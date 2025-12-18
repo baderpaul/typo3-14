@@ -63,6 +63,10 @@
         <source>Other</source>
         <target state="final">Sonstige</target>
       </trans-unit>
+      <trans-unit id="labels.edit" approved="yes">
+        <source>Edit Site Settings "%s"</source>
+        <target state="final">Website-Einstellungen bearbeiten „%s“</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

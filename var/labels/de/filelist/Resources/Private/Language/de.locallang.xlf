@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
   <file source-language="en" datatype="plaintext" original="EXT:filelist/Resources/Private/Language/locallang.xlf" date="2015-08-21T11:45:35Z" product-name="filelist" target-language="de">
     <header/>
@@ -111,9 +111,9 @@
       <trans-unit id="file_edit.php.coundNot" approved="yes">
         <source>This filetype cannot be edited.&lt;br /&gt;The file must have an extension like:&lt;br /&gt;&lt;br
 					/&gt; &lt;b&gt;%s&lt;/b&gt;
-				</source>
+                </source>
         <target state="final">Dieser Dateityp kann nicht bearbeitet werden.&lt;br /&gt;Folgende Dateitypen werden unterstützt:&lt;br /&gt;&lt;br /&gt; &lt;b&gt;%s&lt;/b&gt;
-				</target>
+                </target>
       </trans-unit>
       <trans-unit id="file_newfolder.php.pagetitle" approved="yes">
         <source>New file or folder</source>

@@ -3,6 +3,7 @@
   <file source-language="en" datatype="plaintext" original="EXT:core/Resources/Private/Language/locallang_tsfe.xlf" date="2011-10-17T20:22:34Z" product-name="lang" target-language="de">
     <header/>
     <body>
+      <!-- @deprecated since v14, will be removed in v15. Delete whole file. -->
       <trans-unit id="adminOptions" approved="yes">
         <source>ADMIN PANEL</source>
         <target state="final">ADMIN-PANEL</target>
@@ -100,9 +101,9 @@
         <target state="final">Diesen Datensatz tatsächlich löschen?</target>
       </trans-unit>
       <trans-unit id="p_hideConfirm" xml:space="preserve" approved="yes">
-				<source>Hiding a record will make it invisible on the webpage.  To edit the hidden record enter the backend or enable the frontend preview.
+                <source>Hiding a record will make it invisible on the webpage.  To edit the hidden record enter the backend or enable the frontend preview.
 Continue?</source>
-			<target state="final">Das Verbergen eines Datensatzes macht diesen auf der Web-Seite unsichtbar. Um den Datensatz zu bearbeiten, müssen Sie entweder das Backend benutzen oder bei der Frontend-Eingabe die Vorschau einschalten. Fortfahren?</target></trans-unit>
+            <target state="final">Das Verbergen eines Datensatzes macht diesen auf der Web-Seite unsichtbar. Um den Datensatz zu bearbeiten, müssen Sie entweder das Backend benutzen oder bei der Frontend-Eingabe die Vorschau einschalten. Fortfahren?</target></trans-unit>
     </body>
   </file>
 </xliff>

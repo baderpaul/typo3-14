@@ -83,6 +83,10 @@
         <source>Forgot your password?</source>
         <target state="final">Passwort vergessen?</target>
       </trans-unit>
+      <trans-unit id="login.error.capslock" approved="yes">
+        <source>Attention: Caps lock enabled</source>
+        <target state="final">Achtung: Feststelltaste aktiviert</target>
+      </trans-unit>
       <trans-unit id="login.error.capslockStatus" approved="yes">
         <source>Caps lock enabled</source>
         <target state="final">Feststelltaste aktiv</target>
@@ -130,6 +134,14 @@
       <trans-unit id="login.error.javascript" approved="yes">
         <source>Please activate JavaScript</source>
         <target state="final">Bitte aktiviere JavaScript</target>
+      </trans-unit>
+      <trans-unit id="login.error.cookies" approved="yes">
+        <source>Please activate Cookies</source>
+        <target state="final">Bitte aktiviere Cookies</target>
+      </trans-unit>
+      <trans-unit id="login.error.referrer" approved="yes">
+        <source>TYPO3 relies on HTTP referrers for security reasons in the backend. It looks like your browser was not able to send this information, which may be due to privacy or security settings.</source>
+        <target state="final">TYPO3 stützt sich aus Sicherheitsgründen im Backend auf HTTP-Referrer. Es sieht so aus, als ob dein Browser diese Informationen nicht senden konnte, was möglicherweise an den Datenschutz- oder Sicherheitseinstellungen liegt.</target>
       </trans-unit>
       <trans-unit id="login.process" approved="yes">
         <source>Verifying Login Data ...</source>
@@ -306,6 +318,22 @@
       <trans-unit id="colorScheme.dark" approved="yes">
         <source>Dark mode</source>
         <target state="final">Dunkler Modus</target>
+      </trans-unit>
+      <trans-unit id="pageTree.found_translation" approved="yes">
+        <source>Found translation</source>
+        <target state="final">Übersetzung gefunden</target>
+      </trans-unit>
+      <trans-unit id="pageTree.found_in_translation" approved="yes">
+        <source>Found in translation: %s</source>
+        <target state="final">Gefunden in Übersetzung: %s</target>
+      </trans-unit>
+      <trans-unit id="pageTree.found_in_multiple_translations" approved="yes">
+        <source>Found in multiple translations</source>
+        <target state="final">In mehreren Übersetzungen gefunden</target>
+      </trans-unit>
+      <trans-unit id="pageTree.searchResult" approved="yes">
+        <source>Search result</source>
+        <target state="final">Suchergebnis</target>
       </trans-unit>
     </body>
   </file>

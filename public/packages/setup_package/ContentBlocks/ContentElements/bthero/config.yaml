@@ -1,0 +1,32 @@
+name: typo3-14/bthero
+typeName: typo3-14_bthero
+group: ContentBlocks
+saveAndClose: true
+prefixFields: false
+fields:
+  - identifier: backendheader
+    type: Text
+    placeholder: Pluginbeschreibung für TYPO3 BE
+  - identifier: hero
+    type: Tab
+    label: Hero anlegen
+  - identifier: bgimage
+    label: Hintergrundbild auswählen
+    type: File
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: headline
+    type: Text
+    label: Überschrift
+  - identifier: herotext
+    type: Textarea
+    default: Beschreibungstext
+    label: Herotext
+    rows: 5
+  - identifier: buttons
+    label: Call to Action Link (Buttons) anlegen
+    type: Collection
+    maxitems: 2
+    foreign_table: tt_content
+    allowedRecordTypes:
+      - typo3-14_cta  

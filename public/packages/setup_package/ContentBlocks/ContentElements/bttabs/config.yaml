@@ -1,0 +1,26 @@
+name: typo3-14/bttabs
+title: typo3-14/bttabs
+description: 'Tabs mit Bootstrap 5.3'
+saveAndClose: true
+prefixFields: true
+prefixType: full
+basics:
+  - typo3-14/Tabssettings
+  - typo3-14/Appearance
+  - typo3-14/Links
+group: ContentBlocks
+fields:
+  - identifier: backendheader
+    label: Pluginbeschreibung für TYPO3 BE
+    type: Text
+  - identifier: tab_2
+    type: Tab
+    label: Tab Items
+  - identifier: palette_42
+    type: Palette
+  - identifier: tabsets
+    type: Collection
+    label: Tabitem anlegen
+    foreign_table: tt_content
+    allowedRecordTypes:
+      - typo3-14_textimage

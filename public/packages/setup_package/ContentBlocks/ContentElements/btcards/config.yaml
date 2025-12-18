@@ -1,0 +1,26 @@
+name: typo3-14/btcards
+label: typo3-14/btcards
+description: 'Responsive Cardgroup with Bootstrap'
+basics:
+  - typo3-14/Cardgroupsettings
+  - typo3-14/Appearance
+  - typo3-14/Links
+group: ContentBlocks
+saveAndClose: true
+prefixFields: false
+prefixType: full
+fields:
+  - identifier: backendheader
+    label: Pluginbeschreibung für TYPO3 BE
+    type: Text
+  - identifier: tab_create
+    type: Tab
+    label: Einzelne Cards anlegen
+  - identifier: palette_create
+    type: Palette
+  - identifier: cardsets
+    type: Collection
+    label: Cards anlegen
+    foreign_table: tt_content
+    allowedRecordTypes:
+      - typo3-14_card

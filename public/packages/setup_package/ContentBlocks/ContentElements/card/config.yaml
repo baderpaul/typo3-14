@@ -1,0 +1,137 @@
+name: typo3-14/card
+table: tx_typo3-14_card
+title: Einzelne Card für Cardgroup
+prefixFields: false
+prefixType: full
+group: ContentBlocksHelper
+security:
+  ignorePageTypeRestriction: true
+fields:
+  - identifier: palette_content
+    type: Palette
+    label: Cardcontent
+    description: Text und Headline
+    fields:
+      - identifier: header
+        label: Überschrift/Cardtitel
+        type: Text
+        placeholder: Cardtitel
+      - type: Linebreak
+      - identifier: bodytextsimple
+        label: Cardtext anlegen
+        type: Textarea
+        placeholder: Cardtext      
+        enableRichtext: true
+        richtextConfiguration: simple
+      - type: Linebreak
+  - identifier: palette_image
+    type: Palette
+    label: Cardimage
+    description: Bild hinzufügen 
+    fields:
+      - identifier: image
+        label: Bild zum Text einfügen (max 1)
+        useExistingField: true
+        type: File
+        extendedPalette: true
+        maxitems: 1
+        allowed: jpg,png,svg,webp,gif
+        cropVariants:
+          desktop:
+            title: Desktop
+            allowedAspectRatios:
+              landscape:
+                title: Landscape
+                value: 16 / 10
+          tablet:
+            title: Tablet
+            allowedAspectRatios:
+              landscape:
+                title: Landscape
+                value: 16 / 10
+          smartphone:
+            title: Smartphone
+            allowedAspectRatios:
+              landscape:
+                title: Landscape
+                value: 16 / 10
+  - identifier: palette_link
+    type: Palette
+    label: Verlinkung und Textlabel auswählen bzw. angeben
+    description: Bei Verlinkung des ganzen Cards muss ein Call-to-Action-Text angegeben sein.    
+    fields:
+      - identifier: links
+        type: Collection
+        label: Links anlegen
+        labelField: url
+        description: Es können max. zwei Link angelegt werden. Es kann entweder das ganze Cardelement oder nur ein Link verlinkt werden. Das Cardelement kann nur bei einem Link ganz verlinkt werden, ist ein zweiter Link angelegt is diese Funktion deaktiviert.
+        maxitems: 2
+        minitems: 0
+        appearance:
+          collapseAll: false
+          levelLinksPosition: both
+        fields:
+          - identifier: cta
+            label: Linktext
+            type: Text
+            placeholder: Call to Action Text
+          - identifier: url
+            label: Linkziel
+            type: Link
+            autocomplete: true
+            allowedTypes:
+              - page
+              - url
+              - file
+          - identifier: linklabel
+            label: Nur Linklabel verlinken
+            type: Checkbox
+            renderType: checkboxLabeledToggle
+            items:
+              - label: 'Auswählen'
+                labelChecked: 'Label ist verlinkt'
+                labelUnchecked: 'Label ist nicht verlinkt'
+                invertStateDisplay: false
+  - identifier: palette_linkposition
+    type: Palette
+    label: Verlinkung Steuern und Position auswählen
+    description: Es kann entweder das ganze Cardelement oder nur ein Link verlinkt werden. 
+  - identifier: palette_footer
+    type: Palette
+    label: Footerbereich
+    description: Es können entweder ein oder mehrere Links, oder ein nicht verlinkter Infotext angezeigt werden.
+    fields:
+      - identifier: linkcard
+        label: Ganzes Cardelement verlinken
+        description: Soll das ganze Cardelement verlinkt werden darf nur ein Link angelegt sein.
+        type: Checkbox
+        renderType: checkboxLabeledToggle
+        items:
+          - label: 'Auswählen'
+            labelChecked: 'Card ist verlinkt'
+            labelUnchecked: 'Card ist nicht verlinkt'
+            invertStateDisplay: false 
+      - identifier: linkposition
+        label: Position der Links auswählen
+        type: Select
+        renderType: selectSingle
+        items:
+          - label: 'Links'
+            value: text-start
+          - label: 'Mittig'
+            value: text-center
+          - label: 'Rechts'
+            value: text-end 
+      - type: Linebreak  
+      - identifier: showtextfooter
+        label: Hinweistext anzeigen 
+        type: Checkbox
+        renderType: checkboxLabeledToggle
+        items:
+        - label: 'Auswählen'
+          labelChecked: 'Text wird angezeigt'
+          labelUnchecked: 'Es wird kein Text angezeigt'
+          invertStateDisplay: false
+      - identifier: footertext
+        label: Dieser Text kann im Footerbereich statt Links angezeigt werden.
+        type: Text

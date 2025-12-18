@@ -1,0 +1,8 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Typo3_14\SetupPackage\:
+      resource: '../Classes/*'

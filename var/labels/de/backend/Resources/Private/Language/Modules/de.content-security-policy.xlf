@@ -15,6 +15,18 @@
         <source>Content Security Policy</source>
         <target state="final">Content Security Policy</target>
       </trans-unit>
+      <trans-unit id="short_description" approved="yes">
+        <source>Content Security Policy</source>
+        <target state="final">Content Security Policy</target>
+      </trans-unit>
+      <trans-unit id="description" approved="yes">
+        <source>Allows to manage Content Security Policy settings.</source>
+        <target state="final">Ermöglicht die Verwaltung der Einstellungen für die Content Security Policy.</target>
+      </trans-unit>
+      <trans-unit id="title" approved="yes">
+        <source>Content Security Policy</source>
+        <target state="final">Content Security Policy</target>
+      </trans-unit>
       <trans-unit id="module.headline" approved="yes">
         <source>Content Security Policy</source>
         <target state="final">Content Security Policy</target>
@@ -126,6 +138,10 @@
       <trans-unit id="module.label.guide.no_record_selected" approved="yes">
         <source>Select a row to see more information.</source>
         <target state="final">Wählen Sie eine Zeile aus, um weitere Informationen zu sehen.</target>
+      </trans-unit>
+      <trans-unit id="module.label.showDetails" approved="yes">
+        <source>Show details for "%s" violation with URI: %s</source>
+        <target state="final">Details zu „%s“-Verstoß mit URI anzeigen: %s</target>
       </trans-unit>
       <trans-unit id="module.button.apply" approved="yes">
         <source>Apply</source>

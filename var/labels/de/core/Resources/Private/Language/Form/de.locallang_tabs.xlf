@@ -139,6 +139,10 @@
         <source>Advanced Options</source>
         <target state="final">Erweiterte Einstellungen</target>
       </trans-unit>
+      <trans-unit id="timing" approved="yes">
+        <source>Timing</source>
+        <target state="final">Zeitpunkt</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

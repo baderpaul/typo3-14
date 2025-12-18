@@ -1,0 +1,22 @@
+# To be used within ContentElements
+identifier: typo3-14/Links
+fields:
+  -
+    identifier: links_tab
+    type: Tab
+    label: Links
+  -
+    identifier: links_palette
+    type: Palette
+    fields:
+      -
+        identifier: sectionIndex
+        useExistingField: true
+      -
+        identifier: linkToTop
+        useExistingField: true
+      -
+        identifier: linkToNextElement
+        type: Checkbox
+        useExistingField: true
+      - type: Linebreak 

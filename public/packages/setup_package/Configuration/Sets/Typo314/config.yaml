@@ -1,0 +1,5 @@
+name: typo314/setup-package
+label: Basic Sitepackage with TYPO3 14
+
+dependencies:
+  - typo3/fluid-styled-content

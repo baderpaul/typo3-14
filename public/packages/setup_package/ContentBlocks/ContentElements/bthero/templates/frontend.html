@@ -1,0 +1,22 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers" data-namespace-typo3-fluid="true">
+
+<f:variable name="bgimage" value="{f:uri.image(image: '{data.bgimage.0.originalFile}', fileExtension='webp' )}" />
+<f:variable name="countbuttons" value="{data.buttons -> f:count()}" />
+
+<div class="container-fluid d-flex justify-content-center py-80 background-hero"
+    style="background-image: url('{bgimage}');">
+    <div class="mb-4 col-lg-7 background-hero-glass">
+        <div class="p-10 p-lg-20 pt-lg-30 position-relative">
+            <h1 class="display-4 fw-bold lh-1 text-white">{data.headline}</h1>
+            <p class="lead text-white">{data.herotext}</p>
+            <div class="d-grid gap-20 d-md-flex justify-content-md-center my-10 my-lg-20">
+                <f:for each="{data.buttons}" as="button">
+                    <f:render partial="TeaserLink" arguments="{_all}" />
+                </f:for>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

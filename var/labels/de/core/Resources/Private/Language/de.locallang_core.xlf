@@ -464,6 +464,10 @@ Ohne Speichern fortfahren?</target></trans-unit>
         <source>Create new %s on page "%s"</source>
         <target state="final">%s auf Seite "%s" neu erstellen</target>
       </trans-unit>
+      <trans-unit id="labels.createNewTranslation" approved="yes">
+        <source>Create a %s translation</source>
+        <target state="final">Erstellen Sie eine Übersetzung für %s</target>
+      </trans-unit>
       <trans-unit id="labels.createNewRecordRootLevel" approved="yes">
         <source>Create new %s on root level</source>
         <target state="final">%s auf Wurzelebene neu erstellen</target>
@@ -651,6 +655,22 @@ Ohne Speichern fortfahren?</target></trans-unit>
       <trans-unit id="labels.uncheckAll" approved="yes">
         <source>Uncheck all</source>
         <target state="final">Keine auswählen</target>
+      </trans-unit>
+      <trans-unit id="labels.selectAllLanguages" approved="yes">
+        <source>Select all available languages</source>
+        <target state="final">Alle verfügbaren Sprachen auswählen</target>
+      </trans-unit>
+      <trans-unit id="labels.deselectAllLanguages" approved="yes">
+        <source>Deselect all languages except default</source>
+        <target state="final">Alle Sprachen außer Standard deaktivieren</target>
+      </trans-unit>
+      <trans-unit id="labels.defaultLanguageAlwaysShown" approved="yes">
+        <source>Default language is always shown</source>
+        <target state="final">Die Standardsprache wird immer angezeigt</target>
+      </trans-unit>
+      <trans-unit id="labels.createTranslationFor" approved="yes">
+        <source>Create %s translation of this page</source>
+        <target state="final">%s Übersetzung dieser Seite erstellen</target>
       </trans-unit>
       <trans-unit id="labels.selection" approved="yes">
         <source>Selection:</source>
@@ -941,23 +961,23 @@ Ohne Speichern fortfahren?</target></trans-unit>
         <target state="final">Dateien auswählen und hochladen</target>
       </trans-unit>
       <trans-unit id="file_upload.maxFileSizeExceeded" approved="yes">
-        <source>File &quot;{0}&quot; exceeds maximum file size of {1}!</source>
+        <source>File "{0}" exceeds maximum file size of {1}!</source>
         <target state="final">Datei "{0}" überschreitet maximale Dateigröße von {1}!</target>
       </trans-unit>
       <trans-unit id="file_upload.fileNotAllowed" approved="yes">
-        <source>Filename &quot;{0}&quot; is not allowed!</source>
+        <source>Filename "{0}" is not allowed!</source>
         <target state="final">Dateiname "{0}" ist nicht erlaubt!</target>
       </trans-unit>
       <trans-unit id="file_upload.fileExtensionExpected" approved="yes">
-        <source>Upload failed! A file with &quot;{0}&quot; extension is expected!</source>
+        <source>Upload failed! A file with "{0}" extension is expected!</source>
         <target state="final">Hochladen fehlgeschlagen! Eine Datei mit Erweiterung "{0}" wird erwartet!</target>
       </trans-unit>
       <trans-unit id="file_upload.fileExtensionDisallowed" approved="yes">
-        <source>Upload failed! The file extension must not be &quot;{0}&quot;!</source>
+        <source>Upload failed! The file extension must not be "{0}"!</source>
         <target state="final">Upload fehlgeschlagen! Die Dateiendung darf nicht "{0} " sein!</target>
       </trans-unit>
       <trans-unit id="file_upload.uploadFailed" approved="yes">
-        <source>Upload of file &quot;{0}&quot; failed!</source>
+        <source>Upload of file "{0}" failed!</source>
         <target state="final">Hochladen von Datei "{0}" fehlgeschlagen!</target>
       </trans-unit>
       <trans-unit id="file_upload.uploadSucceeded" approved="yes">
@@ -973,8 +993,8 @@ Ohne Speichern fortfahren?</target></trans-unit>
         <target state="final">Hochladen von Datei {0} von {1}.</target>
       </trans-unit>
       <trans-unit id="file_upload.upload-finished" approved="yes">
-        <source>Upload complete! Filelist reloading...</source>
-        <target state="final">Hochladen fertig! Dateiliste lädt neu...</target>
+        <source>Upload complete. Media module reloading...</source>
+        <target state="final">Upload abgeschlossen. Medienmodul wird neu geladen...</target>
       </trans-unit>
       <trans-unit id="file_upload.overwriteExistingFiles" approved="yes">
         <source>Shall existing files be overwritten?</source>
@@ -1756,9 +1776,21 @@ Do you want to refresh it now?</source>
         <source>Drag to move</source>
         <target state="final">Ziehen zum Bewegen</target>
       </trans-unit>
+      <trans-unit id="tree.search_in_translated_pages" approved="yes">
+        <source>Search in translated pages</source>
+        <target state="final">In übersetzten Seiten suchen</target>
+      </trans-unit>
       <trans-unit id="tree.searchTermInfo" approved="yes">
         <source>Enter search term</source>
         <target state="final">Suchbegriff eingeben</target>
+      </trans-unit>
+      <trans-unit id="tree.searchPageTree" approved="yes">
+        <source>Search page tree</source>
+        <target state="final">Suchseite Baumstruktur</target>
+      </trans-unit>
+      <trans-unit id="tree.searchFolderTree" approved="yes">
+        <source>Search folder tree</source>
+        <target state="final">Ordnerstruktur durchsuchen</target>
       </trans-unit>
       <trans-unit id="warning.file_deny_pattern" approved="yes">
         <source>The value of fileDenyPattern is not set to its default:%s If TYPO3 is running on Apache, a customized value might enable backend or frontend users to execute malicious php scripts.</source>
@@ -1792,13 +1824,9 @@ Do you want to refresh it now?</source>
         <source>Important Notice!</source>
         <target state="final">Wichtiger Hinweis!</target>
       </trans-unit>
-      <trans-unit id="warning.backend_reference" approved="yes">
-        <source>The Reference Index table is empty which is likely the result of a recent TYPO3 upgrade. Please go to %sTools&gt;DB Check%s and update the reference index.</source>
-        <target state="final">Die Referenzindextabelle ist leer. Dies ist wahrscheinlich die Folge einer kürzlich erfolgten TYPO3-Aktualisierung. Bitte den Punkt %sWerkzeuge &gt; DB-Prüfung%s aufrufen und den Referenzindex aktualisieren.</target>
-      </trans-unit>
       <trans-unit id="warning.backend_reference_index" approved="yes">
-        <source>The Reference Index table is empty which is likely the result of a recent TYPO3 upgrade. The Reference Index was last updated on %3$s. Please go to %sSystem&gt;DB Check%s and update the reference index.</source>
-        <target state="final">Die Referenz-Index Tabelle ist leer. Dies ist wahrscheinlich die Folge eines kürzlich durchgeführten TYPO3 Upgrades. Der Referenz-Index wurde zuletzt am %3$s aktualisiert. Bitte rufen Sie das Modul %sSystem&gt;DB-Überprüfung%s auf und aktualisieren Sie den Referenz-Index.</target>
+        <source>The Reference Index is empty (table sys_refindex), which may occur after upgrades or maintenance operations. The last update found on TYPO3 Registry was on %3$s. Please rebuild it via %1$sSystem → Maintenance → Check and Update Reference Index%2$s.</source>
+        <target state="final">Der Referenzindex ist leer (Tabelle sys_refindex), was nach Upgrades oder Wartungsarbeiten vorkommen kann. Die letzte Aktualisierung in der TYPO3-Registry erfolgte am %3$s. Bitte erstelle ihn neu über %1$sSystem → Wartung → Referenzindex prüfen und aktualisieren%2$s.</target>
       </trans-unit>
       <trans-unit id="warning.memcache_not_usable" approved="yes">
         <source>Memcache is configured, but connection to memcached failed with these configuration(s)</source>
@@ -1967,6 +1995,10 @@ Do you want to refresh it now?</source>
       <trans-unit id="error.siteSet.invalidSettings" approved="yes">
         <source>Site set '%1$s' is disabled due to invalid settings: %2$s</source>
         <target state="final">Site-Set '%1$s' ist aufgrund ungültiger Einstellungen deaktiviert: %2$s</target>
+      </trans-unit>
+      <trans-unit id="error.siteSet.invalidRouteEnhancers" approved="yes">
+        <source>Site set '%1$s' is disabled due to invalid route enhancers: %2$s</source>
+        <target state="final">Site-Set '%1$s' ist aufgrund invalider Route Enhancers deaktiviert: %2$s</target>
       </trans-unit>
       <trans-unit id="error.siteSet.invalidSet" approved="yes">
         <source>Invalid site set '%1$s': %2$s</source>

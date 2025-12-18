@@ -124,8 +124,8 @@
         <target state="final">Diese Seite als Unterseite in die derzeit vorhergehende Seite verschieben (auswärts)</target>
       </trans-unit>
       <trans-unit id="delete" approved="yes">
-        <source>Delete record (!)</source>
-        <target state="final">Datensatz löschen(!)</target>
+        <source>Delete</source>
+        <target state="final">Löschen</target>
       </trans-unit>
       <trans-unit id="history" approved="yes">
         <source>History/Undo</source>

@@ -1,0 +1,30 @@
+name: typo3-14/cta
+table: tx_typo3-14_cta
+title: Einzelner Link
+prefixFields: true
+prefixType: full
+group: ContentBlocksHelper
+security:
+  ignorePageTypeRestriction: true
+fields:
+  - identifier: cta
+    label: Linktext
+    type: Text
+    placeholder: Call to Action Text
+  - identifier: url
+    label: Linkziel
+    type: Link
+    autocomplete: true
+    allowedTypes:
+      - page
+      - url
+      - file
+  - identifier: linklabel
+    label: Nur Linklabel verlinken
+    type: Checkbox
+    renderType: checkboxLabeledToggle
+    items:
+      - label: 'Auswählen'
+        labelChecked: 'Label ist verlinkt'
+        labelUnchecked: 'Ganzer Teaser ist verlinkt'
+        invertStateDisplay: false

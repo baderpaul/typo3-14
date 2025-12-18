@@ -92,9 +92,9 @@
         <target state="final">Umgebungsmodul</target>
       </trans-unit>
       <trans-unit id="toolbarItems.sysinfo.allgood" xml:space="preserve" approved="yes">
-				<source>Your system is fully operational.
+                <source>Your system is fully operational.
 Have a nice day.</source>
-			<target state="final">Dein System ist voll funktionsfähig.
+            <target state="final">Dein System ist voll funktionsfähig.
 Hab noch einen schönen Tag.</target></trans-unit>
       <trans-unit id="toolbarItems.sysinfo.applicationcontext" approved="yes">
         <source>Application Context</source>

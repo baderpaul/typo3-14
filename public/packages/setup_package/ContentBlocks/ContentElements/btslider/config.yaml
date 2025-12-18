@@ -1,0 +1,14 @@
+name: typo3-14/btslider
+label: typo3-14/btslider
+description: 'Carousel/Imageslider with Bootstrap 5.3'
+basics:
+  - typo3-14/Appearance
+  - typo3-14/Slidersettings
+  - typo3-14/Slideritems
+  - typo3-14/Links
+group: ContentBlocks
+prefixFields: false
+fields:
+  - identifier: backendheader
+    label: Kurze Pluginbeschreibung für TYPO3 BE
+    type: Text

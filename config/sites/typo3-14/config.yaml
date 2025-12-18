@@ -1,4 +1,4 @@
-base: 'https://typo3-14.ddev.site/'
+base: 'https://typo3-14.ddev.site/de'
 baseVariants:
   -
     base: 'https://typo3-14.ddev.site/'
@@ -12,7 +12,7 @@ languages:
     title: English
     enabled: true
     languageId: 0
-    base: /
+    base: /en/
     locale: en_US.UTF-8
     navigationTitle: English
     flag: us
@@ -23,12 +23,12 @@ languages:
     enabled: true
     locale: de_DE.utf8
     hreflang: de-DE
-    base: /de/
+    base: /
     websiteTitle: TYPO3-14-DE
     navigationTitle: Deutsch
     fallbackType: strict
     fallbacks: ''
-    flag: global
+    flag: de
     languageId: 1
 rootPageId: 1
 websiteTitle: ''
