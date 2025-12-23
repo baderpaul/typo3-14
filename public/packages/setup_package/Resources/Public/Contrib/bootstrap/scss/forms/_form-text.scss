@@ -1,0 +1,21 @@
+@use "../config" as *;
+@use "../variables" as *;
+@use "form-variables" as *;
+
+// scss-docs-start form-text-variables
+$form-text-margin-top:  .25rem !default;
+$form-text-font-size:   $small-font-size !default;
+$form-text-font-style:  null !default;
+$form-text-font-weight: null !default;
+$form-text-color:       var(--secondary-color) !default;
+// scss-docs-end form-text-variables
+
+@layer forms {
+  .form-text {
+    margin-top: $form-text-margin-top;
+    font-size: $form-text-font-size;
+    font-style: $form-text-font-style;
+    font-weight: $form-text-font-weight;
+    color: $form-text-color;
+  }
+}

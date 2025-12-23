@@ -1,0 +1,215 @@
+@use "sass:color";
+@use "sass:map";
+@use "sass:math";
+@use "../config" as *;
+@use "../colors" as *;
+@use "../theme" as *;
+@use "../variables" as *;
+@use "../functions" as *;
+@use "../layout/breakpoints" as *;
+
+// scss-docs-start table-variables
+$table-cell-padding-y:        .5rem !default;
+$table-cell-padding-x:        .5rem !default;
+$table-cell-padding-y-sm:     .25rem !default;
+$table-cell-padding-x-sm:     .25rem !default;
+
+$table-cell-vertical-align:   top !default;
+
+$table-color:                 var(--color-body) !default;
+$table-bg:                    var(--bg-body) !default;
+$table-accent-bg:             transparent !default;
+
+// $table-th-font-weight:        null !default;
+
+$table-striped-color:         $table-color !default;
+$table-striped-bg-factor:     .05 !default;
+$table-striped-bg:            color-mix(in srgb, var(--table-color) #{math.percentage($table-striped-bg-factor)}, transparent) !default;
+
+$table-active-color:          $table-color !default;
+$table-active-bg-factor:      .1 !default;
+$table-active-bg:             color-mix(in srgb, var(--table-color) #{math.percentage($table-active-bg-factor)}, transparent) !default;
+
+$table-hover-color:           $table-color !default;
+$table-hover-bg-factor:       .075 !default;
+$table-hover-bg:              color-mix(in srgb, var(--table-color) #{math.percentage($table-hover-bg-factor)}, transparent) !default;
+
+$table-border-width:          var(--border-width) !default;
+$table-border-color:          var(--border-color) !default;
+
+$table-striped-order:         odd !default;
+$table-striped-columns-order: even !default;
+
+$table-group-separator-color: currentcolor !default;
+
+// $table-caption-color:         var(--secondary-color) !default;
+
+// scss-docs-end table-variables
+
+
+//
+// Basic Bootstrap table
+//
+
+@layer content {
+  .table {
+    // Reset needed for nesting tables
+    --table-color-type: initial;
+    --table-bg-type: initial;
+    --table-color-state: initial;
+    --table-bg-state: initial;
+    // End of reset
+
+    // scss-docs-start table-css-variables
+    --table-color: #{$table-color};
+    --table-bg: #{$table-bg};
+    --table-border-color: #{$table-border-color};
+    --table-accent-bg: #{$table-accent-bg};
+    --table-striped-color: #{$table-striped-color};
+    --table-striped-bg: #{$table-striped-bg};
+    --table-active-color: #{$table-active-color};
+    --table-active-bg: #{$table-active-bg};
+    --table-hover-color: #{$table-hover-color};
+    --table-hover-bg: #{$table-hover-bg};
+    // scss-docs-end table-css-variables
+
+    width: 100%;
+    margin-bottom: $spacer;
+    vertical-align: $table-cell-vertical-align;
+    border-color: var(--theme-border, var(--table-border-color));
+
+    // Target th & td
+    // We need the child combinator to prevent styles leaking to nested tables which doesn't have a `.table` class.
+    // We use the universal selectors here to simplify the selector (else we would need 6 different selectors).
+    // Another advantage is that this generates less code and makes the selector less specific making it easier to override.
+    // stylelint-disable-next-line selector-max-universal
+    > :not(caption) > * > * {
+      padding: $table-cell-padding-y $table-cell-padding-x;
+      // Following the precept of cascades: https://codepen.io/miriamsuzanne/full/vYNgodb
+      color: var(--table-color-state, var(--table-color-type, var(--theme-text, var(--table-color))));
+      background-color: var(--theme-bg-subtle, var(--table-bg));
+      border-block-end-width: $table-border-width;
+      box-shadow: inset 0 0 0 9999px var(--table-bg-state, var(--table-bg-type, var(--theme-bg-subtle, var(--table-accent-bg))));
+    }
+
+    > tbody {
+      vertical-align: inherit;
+    }
+
+    > thead {
+      vertical-align: bottom;
+    }
+  }
+
+  .table-group-divider {
+    border-block-start: calc(#{$table-border-width} * 2) solid $table-group-separator-color;
+  }
+
+  //
+  // Change placement of captions with a class
+  //
+
+  .caption-top {
+    caption-side: top;
+  }
+
+
+  //
+  // Condensed table w/ half padding
+  //
+
+  .table-sm {
+    // stylelint-disable-next-line selector-max-universal
+    > :not(caption) > * > * {
+      padding: $table-cell-padding-y-sm $table-cell-padding-x-sm;
+    }
+  }
+
+
+  // Border versions
+  //
+  // Add or remove borders all around the table and between all the columns.
+  //
+  // When borders are added on all sides of the cells, the corners can render odd when
+  // these borders do not have the same color or if they are semi-transparent.
+  // Therefore we add top and border bottoms to the `tr`s and left and right borders
+  // to the `td`s or `th`s
+
+  .table-bordered {
+    > :not(caption) > * {
+      border-width: $table-border-width 0;
+
+      // stylelint-disable-next-line selector-max-universal
+      > * {
+        border-width: 0 $table-border-width;
+      }
+    }
+  }
+
+  .table-borderless {
+    // stylelint-disable-next-line selector-max-universal
+    > :not(caption) > * > * {
+      border-block-end-width: 0;
+    }
+
+    > :not(:first-child) {
+      border-block-start-width: 0;
+    }
+  }
+
+  // Zebra-striping
+  //
+  // Default zebra-stripe styles (alternating gray and transparent backgrounds)
+
+  // For rows
+  .table-striped {
+    > tbody > tr:nth-of-type(#{$table-striped-order}) > * {
+      --table-color-type: var(--theme-text, var(--table-striped-color));
+      --table-bg-type: color-mix(in srgb, var(--theme-text, var(--table-color)) #{math.percentage($table-striped-bg-factor)}, transparent);
+    }
+  }
+
+  // For columns
+  .table-striped-columns {
+    > :not(caption) > tr > :nth-child(#{$table-striped-columns-order}) {
+      --table-color-type: var(--theme-text, var(--table-striped-color));
+      --table-bg-type: color-mix(in srgb, var(--theme-text, var(--table-color)) #{math.percentage($table-striped-bg-factor)}, transparent);
+    }
+  }
+
+  // Active table
+  //
+  // The `.table-active` class can be added to highlight rows or cells
+
+  .table-active {
+    --table-color-state: var(--theme-text, var(--table-active-color));
+    --table-bg-state: color-mix(in srgb, var(--theme-text, var(--table-color)) #{math.percentage($table-active-bg-factor)}, transparent);
+  }
+
+  // Hover effect
+  //
+  // Placed here since it has to come after the potential zebra striping
+
+  .table-hover {
+    > tbody > tr:hover > * {
+      --table-color-state: var(--theme-text, var(--table-hover-color));
+      --table-bg-state: color-mix(in srgb, var(--theme-text, var(--table-color)) #{math.percentage($table-hover-bg-factor)}, transparent);
+    }
+  }
+
+  // Responsive tables
+  //
+  // Generate series of `.table-responsive-*` classes for configuring the screen
+  // size of where your table will overflow.
+
+  @each $breakpoint in map.keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    @include media-breakpoint-down($breakpoint) {
+      .table-responsive#{$infix} {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+    }
+  }
+}

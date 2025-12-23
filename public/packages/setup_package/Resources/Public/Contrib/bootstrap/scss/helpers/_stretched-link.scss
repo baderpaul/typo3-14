@@ -1,0 +1,12 @@
+@use "../variables" as *;
+
+@layer helpers {
+  .stretched-link {
+    &::#{$stretched-link-pseudo-element} {
+      position: absolute;
+      inset: 0;
+      z-index: $stretched-link-z-index;
+      content: "";
+    }
+  }
+}

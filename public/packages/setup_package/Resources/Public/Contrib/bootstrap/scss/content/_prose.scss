@@ -1,0 +1,150 @@
+@use "../config" as *;
+@use "../mixins/transition" as *;
+
+@layer content {
+  .prose {
+    --content-font-size: var(--font-size-sm);
+    --content-gap: 20px;
+    --heading-color: light-dark(var(--gray-900), var(--white));
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--content-gap);
+    max-width: 1000px;
+    margin-inline: auto;
+    font-size: var(--content-font-size);
+    line-height: 1.5;
+
+    @media (width >= 1024px) {
+      --content-font-size: var(--font-size-md);
+      --content-gap: 24px;
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    pre,
+    table,
+    blockquote {
+      margin-block: 0;
+    }
+
+    :where(ul, ol):not([class]) li:not(:last-child) {
+      margin-bottom: calc(var(--content-gap) / 4);
+    }
+
+    li ul,
+    li ol {
+      margin-top: calc(var(--content-gap) / 4);
+    }
+
+    hr {
+      margin: calc(var(--content-gap) * 1.5) 0;
+      border: 0;
+      border-block-start: var(--border-width) solid var(--hr-border-color);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:not([class]) {
+        margin-top: 0;
+        margin-bottom: calc(var(--content-gap) / -2);
+        font-weight: 500;
+        line-height: 1.25;
+
+        code {
+          font-weight: 600;
+          color: inherit;
+        }
+      }
+    }
+
+    h1,
+    h2 {
+      &:not(:first-child) {
+        margin-top: calc(var(--content-gap) * 1.5);
+      }
+    }
+
+    h3,
+    h4,
+    h5,
+    h6 {
+      &:not(:first-child) {
+        margin-top: calc(var(--content-gap) * 1.25);
+      }
+    }
+
+    h1 {
+      font-size: 2.25em;
+      line-height: 1.1;
+    }
+    h2 {
+      font-size: 1.75em;
+    }
+    h3 {
+      font-size: 1.5em;
+    }
+    h4 {
+      font-size: 1.25em;
+    }
+    h5 {
+      font-size: 1.125em;
+    }
+    h6 {
+      font-size: 1em;
+    }
+
+    a:not([class]) {
+      color: var(--link-color);
+      text-decoration: underline;
+      text-decoration-color: color-mix(in srgb, var(--link-color) 25%, transparent);
+      text-underline-offset: 4px;
+      @include transition(.1s text-decoration-color ease-in-out);
+    }
+
+    a:not([class]):hover {
+      text-decoration-color: var(--link-hover-color);
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    blockquote {
+      padding-inline-start: calc(var(--content-gap) / 2);
+      margin: 0;
+      border-inline-start: 4px solid var(--border-color);
+    }
+
+    table {
+      width: 100%;
+      border-spacing: 0;
+      border-collapse: collapse;
+    }
+
+    :where(table:not([class])) {
+      td,
+      th {
+        padding: 6px 12px;
+        text-align: inherit;
+        border: 1px solid var(--border-color);
+      }
+    }
+
+    dt {
+      font-weight: 500;
+    }
+
+    video,
+    img {
+      max-width: 100%;
+    }
+  }
+}

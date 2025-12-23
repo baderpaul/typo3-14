@@ -1,0 +1,80 @@
+@use "../config" as *;
+@use "../colors" as *;
+@use "../variables" as *;
+@use "../functions" as *;
+@use "../mixins/border-radius" as *;
+@use "../mixins/color-mode" as *;
+@use "../mixins/focus-ring" as *;
+@use "../mixins/transition" as *;
+@use "form-variables" as *;
+
+// scss-docs-start radio-variables
+$radio-border-color: var(--border-color) !default;
+$radio-checked-bg: var(--primary-base) !default;
+$radio-checked-border-color: $radio-checked-bg !default;
+$radio-disabled-bg: var(--bg-3) !default;
+$radio-disabled-opacity: .65 !default;
+// scss-docs-end radio-variables
+
+@layer forms {
+  b-radiogroup {
+    display: flex;
+    gap: var(--gap, .5rem);
+    align-items: var(--align-items, start);
+
+    .description {
+      color: var(--secondary-text);
+    }
+  }
+
+  .radio {
+    // scss-docs-start radio-css-variables
+    --radio-bg: transparent;
+    --radio-border-color: #{$radio-border-color};
+    --radio-checked-bg: #{$radio-checked-bg};
+    --radio-checked-border-color: #{$radio-checked-border-color};
+    --radio-disabled-bg: #{$radio-disabled-bg};
+    --radio-disabled-opacity: #{$radio-disabled-opacity};
+    // scss-docs-end radio-css-variables
+
+    position: relative;
+    flex-shrink: 0;
+    width: 1rem;
+    height: 1rem;
+    margin-block: .125rem;
+    appearance: none;
+    background-color: var(--theme-bg, var(--radio-bg));
+    border: 1px solid var(--theme-bg, var(--radio-border-color));
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: 50%;
+
+    &:checked {
+      color: var(--theme-contrast, var(--primary-contrast));
+      background-color: var(--theme-bg, var(--radio-checked-bg));
+      border-color: var(--theme-bg, var(--radio-checked-border-color));
+
+      &::before {
+        position: absolute;
+        inset: .25rem;
+        content: "";
+        background-color: currentcolor;
+        // stylelint-disable-next-line property-disallowed-list
+        border-radius: 50%;
+      }
+    }
+
+    &:disabled {
+      --radio-bg: var(--radio-disabled-bg);
+
+      ~ label {
+        color: var(--secondary-text);
+        cursor: default;
+      }
+    }
+
+    &:focus-visible {
+      @include focus-ring(true);
+    }
+
+  }
+}

@@ -1,0 +1,142 @@
+@use "config" as *;
+@use "variables" as *;
+@use "mixins/border-radius" as *;
+@use "mixins/deprecate" as *;
+@use "mixins/reset-text" as *;
+
+// scss-docs-start tooltip-variables
+$tooltip-font-size:                 var(--font-size-sm) !default;
+$tooltip-max-width:                 200px !default;
+$tooltip-color:                     var(--bg-body) !default;
+$tooltip-bg:                        var(--fg-body) !default;
+$tooltip-border-radius:             var(--border-radius) !default;
+$tooltip-opacity:                   .95 !default;
+$tooltip-padding-y:                 $spacer * .375 !default;
+$tooltip-padding-x:                 $spacer * .75 !default;
+
+$tooltip-arrow-width:               .8rem !default;
+$tooltip-arrow-height:              .4rem !default;
+// scss-docs-end tooltip-variables
+
+// Form tooltips must come after regular tooltips
+// scss-docs-start tooltip-feedback-variables
+$form-feedback-tooltip-padding-y:     $tooltip-padding-y !default;
+$form-feedback-tooltip-padding-x:     $tooltip-padding-x !default;
+$form-feedback-tooltip-font-size:     $tooltip-font-size !default;
+$form-feedback-tooltip-line-height:   null !default;
+$form-feedback-tooltip-opacity:       $tooltip-opacity !default;
+$form-feedback-tooltip-border-radius: $tooltip-border-radius !default;
+// scss-docs-end tooltip-feedback-variables
+
+
+@layer components {
+  .tooltip {
+    // scss-docs-start tooltip-css-vars
+    --tooltip-zindex: #{$zindex-tooltip};
+    --tooltip-max-width: #{$tooltip-max-width};
+    --tooltip-padding-x: #{$tooltip-padding-x};
+    --tooltip-padding-y: #{$tooltip-padding-y};
+    --tooltip-font-size: #{$tooltip-font-size};
+    --tooltip-color: #{$tooltip-color};
+    --tooltip-bg: #{$tooltip-bg};
+    --tooltip-border-radius: #{$tooltip-border-radius};
+    --tooltip-opacity: #{$tooltip-opacity};
+    --tooltip-arrow-width: #{$tooltip-arrow-width};
+    --tooltip-arrow-height: #{$tooltip-arrow-height};
+    // scss-docs-end tooltip-css-vars
+
+    z-index: var(--tooltip-zindex);
+    display: block;
+    // Our parent element can be arbitrary since tooltips are by default inserted as a sibling of their target element.
+    // So reset our font and text properties to avoid inheriting weird values.
+    @include reset-text();
+    font-size: var(--tooltip-font-size);
+    // Allow breaking very long words so they don't overflow the tooltip's bounds
+    word-wrap: break-word;
+    opacity: 0;
+
+    &.show { opacity: var(--tooltip-opacity); }
+
+    .tooltip-arrow {
+      display: block;
+      width: var(--tooltip-arrow-width);
+      height: var(--tooltip-arrow-height);
+
+      &::before {
+        position: absolute;
+        content: "";
+        border-color: transparent;
+        border-style: solid;
+      }
+    }
+  }
+
+  .bs-tooltip-top .tooltip-arrow {
+    bottom: calc(-1 * var(--tooltip-arrow-height));
+
+    &::before {
+      top: -1px;
+      border-width: var(--tooltip-arrow-height) calc(var(--tooltip-arrow-width) * .5) 0;
+      border-block-start-color: var(--tooltip-bg);
+    }
+  }
+
+  .bs-tooltip-end .tooltip-arrow {
+    left: calc(-1 * var(--tooltip-arrow-height));
+    width: var(--tooltip-arrow-height);
+    height: var(--tooltip-arrow-width);
+
+    &::before {
+      right: -1px;
+      border-width: calc(var(--tooltip-arrow-width) * .5) var(--tooltip-arrow-height) calc(var(--tooltip-arrow-width) * .5) 0;
+      border-inline-end-color: var(--tooltip-bg);
+    }
+  }
+
+  .bs-tooltip-bottom .tooltip-arrow {
+    top: calc(-1 * var(--tooltip-arrow-height));
+
+    &::before {
+      bottom: -1px;
+      border-width: 0 calc(var(--tooltip-arrow-width) * .5) var(--tooltip-arrow-height);
+      border-block-end-color: var(--tooltip-bg);
+    }
+  }
+
+  .bs-tooltip-start .tooltip-arrow {
+    right: calc(-1 * var(--tooltip-arrow-height));
+    width: var(--tooltip-arrow-height);
+    height: var(--tooltip-arrow-width);
+
+    &::before {
+      left: -1px;
+      border-width: calc(var(--tooltip-arrow-width) * .5) 0 calc(var(--tooltip-arrow-width) * .5) var(--tooltip-arrow-height);
+      border-inline-start-color: var(--tooltip-bg);
+    }
+  }
+
+  .bs-tooltip-auto {
+    &[data-bs-placement^="top"] {
+      @extend .bs-tooltip-top;
+    }
+    &[data-bs-placement^="right"] {
+      @extend .bs-tooltip-end;
+    }
+    &[data-bs-placement^="bottom"] {
+      @extend .bs-tooltip-bottom;
+    }
+    &[data-bs-placement^="left"] {
+      @extend .bs-tooltip-start;
+    }
+  }
+
+  // Wrapper for the tooltip content
+  .tooltip-inner {
+    max-width: var(--tooltip-max-width);
+    padding: var(--tooltip-padding-y) var(--tooltip-padding-x);
+    color: var(--tooltip-color);
+    text-align: center;
+    background-color: var(--tooltip-bg);
+    @include border-radius(var(--tooltip-border-radius));
+  }
+}

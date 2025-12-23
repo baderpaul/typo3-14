@@ -1,0 +1,93 @@
+@use "../config" as *;
+@use "../colors" as *;
+@use "../variables" as *;
+@use "../functions" as *;
+@use "../mixins/border-radius" as *;
+@use "../mixins/box-shadow" as *;
+@use "../mixins/color-mode" as *;
+@use "../mixins/focus-ring" as *;
+@use "../mixins/transition" as *;
+@use "form-variables" as *;
+
+@layer forms {
+  .switch {
+    // scss-docs-start switch-css-variables
+    --switch-height: 1.25rem;
+    --switch-width: calc(var(--switch-height) * 1.5);
+    --switch-padding: .0625rem;
+    --switch-bg: var(--secondary-bg);
+    --switch-border-width: var(--border-width);
+    --switch-border-color: var(--border-color);
+    --switch-indicator-bg: var(--white);
+    --switch-checked-bg: var(--primary-base);
+    --switch-checked-border-color: var(--switch-checked-bg);
+    --switch-checked-indicator-bg: var(--white);
+    --switch-disabled-bg: var(--secondary-bg);
+    --switch-disabled-indicator-bg: var(--secondary-text);
+    // scss-docs-end switch-css-variables
+
+    position: relative;
+    display: flex;
+    flex-shrink: 0;
+    align-items: stretch;
+    justify-content: flex-start;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    padding: var(--switch-padding);
+    background-color: var(--switch-bg);
+    border: var(--switch-border-width) solid var(--switch-border-color);
+    // stylelint-disable-next-line property-disallowed-list
+    border-radius: 10rem;
+    box-shadow: inset 0 1px 2px rgba($black, .05);
+    // stylelint-disable-next-line property-disallowed-list
+    transition: .15s ease-in-out;
+    transition-property: padding-inline-start, background-color;
+
+    &::before {
+      flex-shrink: 0;
+      width: calc(var(--switch-height) - calc(var(--switch-padding) * 2) - var(--switch-border-width) * 2);
+      height: calc(var(--switch-height) - calc(var(--switch-padding) * 2) - var(--switch-border-width) * 2);
+      content: "";
+      background-color: var(--switch-indicator-bg);
+      // stylelint-disable-next-line property-disallowed-list
+      border-radius: 50%;
+      box-shadow: 0 1px 2px rgba($black, .1);
+    }
+
+    input {
+      position: absolute;
+      inset: 0;
+      appearance: none;
+      background-color: transparent;
+      outline: 0;
+    }
+
+    &:focus-within {
+      @include focus-ring(true);
+    }
+
+    &:has(input:checked) {
+      padding-inline-start: calc(var(--switch-height) / 2 + var(--switch-padding));
+      background-color: var(--theme-bg, var(--switch-checked-bg));
+      border-color: var(--theme-bg, var(--switch-checked-border-color));
+    }
+
+    &:has(input:disabled) {
+      --switch-bg: var(--switch-disabled-bg);
+      --switch-indicator-bg: var(--switch-disabled-indicator-bg);
+
+      &::before { opacity: .4; }
+
+      ~ label {
+        color: var(--secondary-text);
+        cursor: default;
+      }
+    }
+  }
+  .switch-sm {
+    --switch-height: 1em;
+  }
+  .switch-lg {
+    --switch-height: 2em;
+  }
+}

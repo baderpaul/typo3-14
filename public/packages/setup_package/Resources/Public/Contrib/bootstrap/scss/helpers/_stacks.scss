@@ -1,0 +1,28 @@
+// stylelint-disable selector-no-qualifying-type
+
+@layer helpers {
+  // scss-docs-start stacks
+  .hstack,
+  b-hstack {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+  }
+  .hstack-start,
+  b-hstack[align="start"] {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    align-self: stretch;
+  }
+
+  .vstack,
+  b-vstack {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-self: stretch;
+  }
+  // scss-docs-end stacks
+}

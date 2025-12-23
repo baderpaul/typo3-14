@@ -1,0 +1,7 @@
+@use "../config" as *;
+
+@layer helpers {
+  .focus-ring:focus-visible {
+    outline: var(--focus-ring);
+  }
+}

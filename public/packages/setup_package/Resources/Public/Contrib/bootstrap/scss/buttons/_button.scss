@@ -1,0 +1,440 @@
+@use "sass:color";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+@use "sass:string";
+@use "../colors" as *;
+@use "../config" as *;
+@use "../theme" as *;
+@use "../variables" as *;
+@use "../functions" as *;
+@use "../mixins/border-radius" as *;
+@use "../mixins/box-shadow" as *;
+@use "../mixins/focus-ring" as *;
+@use "../mixins/gradients" as *;
+@use "../mixins/transition" as *;
+@use "button-variables" as *;
+
+// scss-docs-start btn-variants
+$button-variants: (
+  "solid": (
+    "base": (
+      "bg": "bg",
+      "color": "contrast",
+      "border-color": "bg"
+    ),
+    "hover": (
+      "bg": "bg",
+      "border-color": "bg",
+      "color": "contrast"
+    ),
+    "active": (
+      "bg": "bg",
+      "border-color": "bg",
+      "color": "contrast"
+    )
+  ),
+  "outline": (
+    "base": (
+      "bg": "transparent",
+      "color": "text",
+      "border-color": "border"
+    ),
+    "hover": (
+      "bg": "bg",
+      "color": "contrast",
+      "border-color": "bg"
+    ),
+    "active": (
+      "bg": "bg",
+      "color": "contrast",
+      "border-color": "bg"
+    )
+  ),
+  "subtle": (
+    "base": (
+      "bg": "bg-subtle",
+      "color": "text",
+      "border-color": "transparent"
+    ),
+    "hover": (
+      "bg": ("bg-muted", "bg-subtle"),
+      "color": "text-emphasis"
+    ),
+    "active": (
+      "bg": "bg-subtle",
+      "color": "text-emphasis"
+    )
+  ),
+  "text": (
+    "base": (
+      "color": "text",
+      "bg": "transparent",
+      "border-color": "transparent"
+    ),
+    "hover": (
+      "color": "text",
+      "bg": "bg-subtle"
+    ),
+    "active": (
+      "color": "text",
+      "bg": "bg-subtle"
+    )
+  )
+) !default;
+// scss-docs-end btn-variants
+
+// scss-docs-start btn-sizes
+$button-sizes: (
+  "xs": (
+    "padding-y": $btn-padding-y-xs,
+    "padding-x": $btn-padding-x-xs,
+    "font-size": $btn-font-size-xs,
+    "line-height": $btn-line-height-xs,
+    "border-radius": $btn-border-radius-xs,
+    "min-height": 1.5rem
+  ),
+  "sm": (
+    "padding-y": $btn-padding-y-sm,
+    "padding-x": $btn-padding-x-sm,
+    "font-size": $btn-font-size-sm,
+    "line-height": $btn-line-height-sm,
+    "border-radius": $btn-border-radius-sm,
+    "min-height": 2rem
+  ),
+  "lg": (
+    "padding-y": $btn-padding-y-lg,
+    "padding-x": $btn-padding-x-lg,
+    "font-size": $btn-font-size-lg,
+    "line-height": $btn-line-height-lg,
+    "border-radius": $btn-border-radius-lg,
+    "min-height": 2.75rem
+  ),
+  // Commented out by default on purpose
+  // "xl": (
+  //   "padding-y": $btn-padding-y-xl,
+  //   "padding-x": $btn-padding-x-xl,
+  //   "font-size": $btn-font-size-xl,
+  //   "line-height": $btn-line-height-xl,
+  //   "border-radius": $btn-border-radius-xl,
+  //   "min-height": 3.25rem
+  // ),
+) !default;
+// scss-docs-end btn-sizes
+
+//
+// Base styles
+//
+
+$btn-variant-selectors: () !default;
+@each $variant in map.keys($button-variants) {
+  $btn-variant-selectors: list.append($btn-variant-selectors, string.unquote(".btn-#{$variant}"), comma);
+}
+
+@layer components {
+  .btn,
+  #{$btn-variant-selectors} {
+    // scss-docs-start btn-css-vars
+    --btn-min-height: 2.25rem;
+    --btn-padding-x: #{$btn-padding-x};
+    --btn-padding-y: #{$btn-padding-y};
+    --btn-font-family: #{$btn-font-family};
+    --btn-font-size: #{$btn-font-size};
+    --btn-font-weight: #{$btn-font-weight};
+    --btn-line-height: #{$btn-line-height};
+    --btn-color: #{$btn-color};
+    --btn-border-width: #{$btn-border-width};
+    --btn-border-color: transparent;
+    --btn-border-radius: #{$btn-border-radius};
+    --btn-hover-border-color: transparent;
+    --btn-disabled-opacity: #{$btn-disabled-opacity};
+    // scss-docs-end btn-css-vars
+
+    display: inline-flex;
+    gap: var(--btn-gap, .25rem);
+    align-items: center;
+    justify-content: center;
+    min-height: var(--btn-min-height);
+    padding: var(--btn-padding-y) var(--btn-padding-x);
+    font-family: var(--btn-font-family);
+    font-size: var(--btn-font-size);
+    font-weight: var(--btn-font-weight);
+    line-height: var(--btn-line-height);
+    color: var(--btn-color);
+    text-decoration: none;
+    white-space: $btn-white-space;
+    vertical-align: middle;
+    // stylelint-disable-next-line scss/at-function-named-arguments
+    cursor: if(sass($enable-button-pointers): pointer; else: null);
+    user-select: none;
+    background-color: var(--btn-bg, var(--bg-2));
+    border: var(--btn-border-width) solid var(--btn-border-color);
+    @include border-radius(var(--btn-border-radius));
+    @include transition($btn-transition);
+
+    &:hover {
+      color: var(--btn-hover-color);
+      background-color: var(--btn-hover-bg, var(--bg-3));
+      border-color: var(--btn-hover-border-color);
+    }
+
+    &:focus-visible {
+      @include focus-ring(true);
+      --focus-ring-offset: 1px;
+    }
+
+    &.active,
+    &.show {
+      color: var(--btn-active-color);
+      background-color: var(--btn-active-bg, var(--bg-3));
+      border-color: var(--btn-active-border-color);
+
+      &:focus-visible {
+        @include focus-ring(true);
+      }
+    }
+
+    &:disabled,
+    &.disabled,
+    fieldset:disabled & {
+      color: var(--btn-disabled-color);
+      pointer-events: none;
+      background-color: var(--btn-disabled-bg, var(--bg-1));
+      // stylelint-disable-next-line scss/at-function-named-arguments
+      background-image: if(sass($enable-gradients): none; else: null);
+      border-color: var(--btn-disabled-border-color);
+      opacity: var(--btn-disabled-opacity);
+    }
+  }
+
+
+  // Main button style generator mixin
+  // Generate button variant classes (e.g., .btn-solid, .btn-outline, etc.)
+  // scss-docs-start btn-variant-mixin
+  @each $variant, $_ in $button-variants {
+    .btn-#{$variant} {
+      @each $property, $value in map.get($button-variants, $variant, "base") {
+        @if $value == "transparent" {
+          --btn-#{$property}: transparent;
+        } @else {
+          --btn-#{$property}: var(--theme-#{$value});
+        }
+      }
+
+      @each $property, $value in map.get($button-variants, $variant, "active") {
+        @if $value == "transparent" {
+          --btn-active-#{$property}: transparent;
+        } @else if $value == "bg-subtle" {
+          --btn-active-#{$property}: var(--theme-#{$value});
+        } @else {
+          --btn-active-#{$property}: oklch(from var(--theme-#{$value}) calc(l * .9) calc(c * 1.15) h);
+        }
+      }
+      @each $property, $value in map.get($button-variants, $variant, "base") {
+        @if $value == "transparent" {
+          --btn-disabled-#{$property}: transparent;
+        } @else {
+          --btn-disabled-#{$property}: var(--theme-#{$value});
+        }
+      }
+
+
+      &:hover {
+        @each $property, $value in map.get($button-variants, $variant, "hover") {
+          @if $value == "transparent" {
+            --btn-hover-#{$property}: transparent;
+          } @else if meta.type-of($value) == "list" {
+            $first-value: list.nth($value, 1);
+            $second-value: list.nth($value, 2);
+            --btn-hover-#{$property}: color-mix(in oklch, var(--theme-#{$first-value}) 50%, var(--theme-#{$second-value}));
+          } @else if $value == "bg-subtle" {
+            --btn-hover-#{$property}: var(--theme-#{$value});
+          } @else {
+            --btn-hover-#{$property}: oklch(from var(--theme-#{$value}) calc(l * .95) calc(c * 1.1) h);
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline-color: var(--theme-focus-ring);
+      }
+
+      &:active,
+      &.active,
+      &.btn-check:has(input:checked) {
+        @each $property, $value in map.get($button-variants, $variant, "active") {
+          @if $value == "transparent" {
+            --btn-active-#{$property}: transparent;
+          } @else if $value == "bg-subtle" {
+            --btn-active-#{$property}: var(--theme-#{$value});
+          } @else {
+            --btn-active-#{$property}: oklch(from var(--theme-#{$value}) calc(l * .9) calc(c * 1.15) h);
+          }
+        }
+      }
+
+      // Disabled state for toggle buttons
+      &:disabled,
+      &.disabled,
+      &.btn-check:has(input:disabled) {
+        @each $property, $value in map.get($button-variants, $variant, "base") {
+          @if $value == "transparent" {
+            --btn-disabled-#{$property}: transparent;
+          } @else {
+            --btn-disabled-#{$property}: var(--theme-#{$value});
+          }
+        }
+      }
+    }
+  }
+  // scss-docs-end btn-variant-mixin
+
+  //
+  // Link buttons
+  //
+
+  // Make a button look and behave like a link
+  .btn-link {
+    --btn-font-weight: #{$font-weight-normal};
+    --btn-color: #{$btn-link-color};
+    --btn-bg: transparent;
+    --btn-border-color: transparent;
+    --btn-hover-color: #{$btn-link-hover-color};
+    --btn-hover-border-color: transparent;
+    --btn-active-color: #{$btn-link-hover-color};
+    --btn-active-border-color: transparent;
+    --btn-disabled-color: #{$btn-link-disabled-color};
+    --btn-disabled-border-color: transparent;
+
+    text-decoration: var(--link-decoration);
+
+    @if $enable-gradients {
+      background-image: none;
+    }
+
+    &:focus-visible {
+      color: var(--btn-color);
+    }
+
+    &:hover {
+      color: var(--btn-hover-color);
+    }
+
+    // No need for an active state here
+  }
+
+
+  //
+  // Button Sizes
+  //
+
+  // Generate button size classes from the $button-sizes map
+  // Skip "md" as it's the default size for .btn
+  @each $size, $properties in $button-sizes {
+    .btn-#{$size},
+    .btn-group-#{$size} > [class*="btn-"] {
+      --btn-min-height: #{map.get($properties, "min-height")};
+      --btn-padding-y: #{map.get($properties, "padding-y")};
+      --btn-padding-x: #{map.get($properties, "padding-x")};
+      --btn-font-size: #{map.get($properties, "font-size")};
+      --btn-line-height: #{map.get($properties, "line-height")};
+      --btn-border-radius: #{map.get($properties, "border-radius")};
+    }
+  }
+
+  .btn-icon {
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    padding: 0;
+  }
+
+  //
+  // Toggle buttons (.btn-check)
+  //
+  // Checkbox and radio inputs that look like buttons. Add .btn-check to a
+  // label with button classes, with the input nested inside.
+  //
+  // Example: <label class="btn-check btn-solid theme-primary"><input type="checkbox">Toggle</label>
+
+  .btn-check {
+    > input {
+      position: absolute;
+      clip: rect(0, 0, 0, 0);
+      pointer-events: none;
+    }
+
+    &:has(input:checked) {
+      color: var(--btn-active-color);
+      background-color: var(--btn-active-bg, var(--bg-3));
+      // stylelint-disable-next-line scss/at-function-named-arguments
+      background-image: if(sass($enable-gradients): none; else: null);
+      border-color: var(--btn-active-border-color);
+      @include box-shadow(var(--btn-active-shadow));
+    }
+
+    &:has(input:focus-visible) {
+      @include focus-ring(true);
+      --focus-ring-offset: 1px;
+    }
+
+    &:has(input:disabled) {
+      color: var(--btn-disabled-color);
+      pointer-events: none;
+      background-color: var(--btn-disabled-bg, var(--bg-1));
+      // stylelint-disable-next-line scss/at-function-named-arguments
+      background-image: if(sass($enable-gradients): none; else: null);
+      border-color: var(--btn-disabled-border-color);
+      opacity: var(--btn-disabled-opacity);
+      @include box-shadow(none);
+    }
+  }
+
+  //
+  // Styled buttons
+  //
+  // Add visual depth with gradients and shadows. Customize via CSS variables.
+
+  .btn-styled {
+    --btn-gradient-start: rgb(255 255 255 / 12.5%);
+    --btn-gradient-end: rgb(0 0 0 / 7.5%);
+    --btn-border-mix-color: #000;
+    --btn-border-mix-amount: 10%;
+    --btn-border-hover-mix-amount: 12.5%;
+    --btn-border-active-mix-amount: 20%;
+    --btn-shadow: 0 1px 2px rgb(0 0 0 / 15%), inset 0 1px 0 rgb(255 255 255 / 10%);
+    --btn-active-shadow: inset 0 2px 4px rgba(0, 0, 0, .15);
+
+    background-image:
+      linear-gradient(
+        to bottom,
+        var(--btn-gradient-start),
+        var(--btn-gradient-end)
+      );
+    border-color: color-mix(in lab, var(--theme-bg), var(--btn-border-mix-color) var(--btn-border-mix-amount));
+    box-shadow: var(--btn-shadow);
+
+    &:hover {
+      background-image:
+        linear-gradient(
+          to bottom,
+          var(--btn-gradient-start),
+          var(--btn-gradient-end)
+        );
+      border-color: color-mix(in lab, var(--theme-bg), var(--btn-border-mix-color) var(--btn-border-hover-mix-amount));
+    }
+
+    &:active,
+    &.active {
+      background-image: none;
+      border-color: color-mix(in lab, var(--theme-bg), var(--btn-border-mix-color) var(--btn-border-active-mix-amount));
+      box-shadow: var(--btn-active-shadow);
+    }
+
+    &:disabled,
+    &.disabled {
+      background-image: none;
+      box-shadow: none;
+    }
+  }
+}

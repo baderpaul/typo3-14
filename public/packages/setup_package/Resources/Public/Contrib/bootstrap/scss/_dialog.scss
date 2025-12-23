@@ -1,0 +1,235 @@
+@use "sass:map";
+@use "config" as *;
+@use "variables" as *;
+@use "layout/breakpoints" as *;
+@use "mixins/border-radius" as *;
+@use "mixins/box-shadow" as *;
+@use "mixins/transition" as *;
+
+// Native <dialog> component
+// Uses the browser's native dialog element with showModal()/show()/close() APIs
+// Leverages native [open] attribute and ::backdrop pseudo-element
+
+// scss-docs-start dialog-css-vars
+$dialog-padding:                1rem !default;
+$dialog-width:                  500px !default;
+$dialog-width-sm:               280px !default;
+$dialog-width-lg:               800px !default;
+$dialog-width-xl:               1140px !default;
+$dialog-margin:                 1.75rem !default;
+$dialog-color:                  var(--fg-body) !default;
+$dialog-bg:                     var(--bg-body) !default;
+$dialog-border-color:           var(--border-color-translucent) !default;
+$dialog-border-width:           var(--border-width) !default;
+$dialog-border-radius:          var(--border-radius-lg) !default;
+$dialog-box-shadow:             var(--box-shadow-lg) !default;
+$dialog-backdrop-bg:            rgba(0, 0, 0, .5) !default;
+$dialog-header-padding:         1rem !default;
+$dialog-header-border-color:    var(--border-color) !default;
+$dialog-header-border-width:    var(--border-width) !default;
+$dialog-footer-padding:         1rem !default;
+$dialog-footer-border-color:    var(--border-color) !default;
+$dialog-footer-border-width:    var(--border-width) !default;
+$dialog-footer-gap:             .5rem !default;
+// scss-docs-end dialog-css-vars
+
+@layer components {
+  // Prevent body scroll when dialog is open
+  .dialog-open {
+    overflow: hidden;
+    scrollbar-gutter: stable;
+  }
+
+  .dialog {
+    --dialog-padding: #{$dialog-padding};
+    --dialog-width: #{$dialog-width};
+    --dialog-margin: #{$dialog-margin};
+    --dialog-color: #{$dialog-color};
+    --dialog-bg: #{$dialog-bg};
+    --dialog-border-color: #{$dialog-border-color};
+    --dialog-border-width: #{$dialog-border-width};
+    --dialog-border-radius: #{$dialog-border-radius};
+    --dialog-box-shadow: #{$dialog-box-shadow};
+    --dialog-backdrop-bg: #{$dialog-backdrop-bg};
+    --dialog-header-padding: #{$dialog-header-padding};
+    --dialog-header-border-color: #{$dialog-header-border-color};
+    --dialog-header-border-width: #{$dialog-header-border-width};
+    --dialog-footer-padding: #{$dialog-footer-padding};
+    --dialog-footer-border-color: #{$dialog-footer-border-color};
+    --dialog-footer-border-width: #{$dialog-footer-border-width};
+    --dialog-footer-gap: #{$dialog-footer-gap};
+
+    // Reset native dialog styles
+    max-width: var(--dialog-width);
+    max-height: calc(100% - var(--dialog-margin) * 2);
+    padding: 0;
+    margin: auto;
+    color: var(--dialog-color);
+    background-color: var(--dialog-bg);
+    background-clip: padding-box;
+    border: var(--dialog-border-width) solid var(--dialog-border-color);
+    @include border-radius(var(--dialog-border-radius));
+    @include box-shadow(var(--dialog-box-shadow));
+
+    // Native backdrop styling via ::backdrop pseudo-element
+    &::backdrop {
+      background-color: var(--dialog-backdrop-bg);
+    }
+
+    // Animation support using native [open] attribute
+    &.fade {
+      opacity: 0;
+      @include transition(opacity .15s linear);
+
+      &::backdrop {
+        opacity: 0;
+        @include transition(opacity .15s linear);
+      }
+
+      &[open] {
+        opacity: 1;
+
+        &::backdrop {
+          opacity: 1;
+        }
+      }
+    }
+
+    // Static backdrop "bounce" animation (modal dialogs only)
+    &.dialog-static {
+      transform: scale(1.02);
+    }
+
+    // Non-modal dialog positioning
+    // show() doesn't use the top layer, so we need explicit positioning and z-index
+    &.dialog-nonmodal {
+      position: fixed;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      z-index: $zindex-dialog;
+      margin-inline: 0;
+      transform: translate(-50%, -50%);
+    }
+
+    // Overflow dialog - scrollable viewport container with dialog box inside
+    &.dialog-overflow {
+      // Make dialog element the full-viewport scrollable container
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      max-width: 100%;
+      height: 100%;
+      max-height: 100%;
+      padding: var(--dialog-margin);
+      margin: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+
+      // The visual dialog box is a child wrapper
+      > .dialog-box {
+        max-width: var(--dialog-width);
+        margin-block-end: var(--dialog-margin);
+        margin-inline: auto;
+        color: var(--dialog-color);
+        background-color: var(--dialog-bg);
+        background-clip: padding-box;
+        border: var(--dialog-border-width) solid var(--dialog-border-color);
+        @include border-radius(var(--dialog-border-radius));
+        @include box-shadow(var(--dialog-box-shadow));
+      }
+    }
+
+    // Scrollable dialog body (header/footer stay fixed)
+    &.dialog-scrollable[open] {
+      display: flex;
+      flex-direction: column;
+      max-height: calc(100% - var(--dialog-margin) * 2);
+
+      .dialog-body {
+        overflow-y: auto;
+      }
+    }
+  }
+
+  // Dialog sizes
+  .dialog-sm { --dialog-width: #{$dialog-width-sm}; }
+  .dialog-lg { --dialog-width: #{$dialog-width-lg}; }
+  .dialog-xl { --dialog-width: #{$dialog-width-xl}; }
+
+  // Fullscreen dialog
+  .dialog-fullscreen {
+    --dialog-width: 100vw;
+    --dialog-margin: 0;
+    --dialog-border-radius: 0;
+
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+  }
+
+  // Responsive fullscreen dialogs
+  @each $breakpoint in map.keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    // stylelint-disable-next-line scss/at-function-named-arguments
+    $postfix: if(sass($infix != ""): #{$infix}-down; else: "");
+
+    @if $postfix != "" {
+      @include media-breakpoint-down($breakpoint) {
+        .dialog-fullscreen#{$postfix} {
+          --dialog-width: 100vw;
+          --dialog-margin: 0;
+          --dialog-border-radius: 0;
+
+          width: 100%;
+          max-width: none;
+          height: 100%;
+          max-height: none;
+        }
+      }
+    }
+  }
+
+  // Dialog header
+  .dialog-header {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    padding: var(--dialog-header-padding);
+    border-block-end: var(--dialog-header-border-width) solid var(--dialog-header-border-color);
+
+    .btn-close {
+      margin-inline-start: auto;
+    }
+  }
+
+  // Dialog title
+  .dialog-title {
+    margin-bottom: 0;
+    font-size: var(--font-size-md);
+    line-height: 1.5;
+  }
+
+  // Dialog body
+  .dialog-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: var(--dialog-padding);
+    overflow-y: auto;
+  }
+
+  // Dialog footer
+  .dialog-footer {
+    display: flex;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+    gap: var(--dialog-footer-gap);
+    align-items: center;
+    justify-content: flex-end;
+    padding: var(--dialog-footer-padding);
+    border-block-start: var(--dialog-footer-border-width) solid var(--dialog-footer-border-color);
+  }
+}
