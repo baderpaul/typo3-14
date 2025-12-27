@@ -1,34 +1,29 @@
-base: 'https://typo3-14.ddev.site/de'
-baseVariants:
-  -
-    base: 'https://typo3-14.ddev.site/'
-    condition: 'applicationContext == "Development"'
+base: /
 dependencies:
   - typo314/setup-package
   - typo3/fluid-styled-content
-  - typo3/seo-sitemap
 languages:
-  -
-    title: English
-    enabled: true
-    languageId: 0
-    base: /en/
-    locale: en_US.UTF-8
-    navigationTitle: English
-    flag: us
-    hreflang: ''
-    websiteTitle: TYPO3-14-EN
   -
     title: Deutsch
     enabled: true
     locale: de_DE.utf8
     hreflang: de-DE
     base: /
-    websiteTitle: TYPO3-14-DE
+    websiteTitle: ''
     navigationTitle: Deutsch
-    fallbackType: strict
-    fallbacks: ''
     flag: de
+    languageId: 0
+  -
+    title: English
+    enabled: true
+    locale: en_GB.utf8
+    hreflang: en-GB
+    base: /en/
+    websiteTitle: Homepage-Eng
+    navigationTitle: English
+    fallbackType: fallback
+    fallbacks: ''
+    flag: gb
     languageId: 1
-rootPageId: 1
+rootPageId: 7
 websiteTitle: ''

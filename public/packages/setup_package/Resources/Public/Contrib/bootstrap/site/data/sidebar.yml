@@ -1,0 +1,199 @@
+# This file holds all sidebar menu's entries.
+# The logic for the sidebar generation is in "site/layouts/partials/docs-sidebar.html".
+
+- title: Getting started
+  icon: book-half
+  icon_color: indigo
+  pages:
+    - title: Install
+    # - title: Introduction
+    - title: Approach
+    - title: JavaScript
+    - title: Accessibility
+    # - title: Community
+
+- title: Guides
+  icon: map
+  icon_color: green
+  pages:
+    - title: Quickstart
+    - title: npm
+    - title: Webpack
+    - title: Parcel
+    - title: Vite
+    - title: Contribute
+
+- title: Customize
+  icon: palette2
+  icon_color: pink
+  pages:
+    - title: Overview
+    - title: Sass
+    - title: Options
+    - title: Color
+    - title: Theme
+    - title: Color modes
+    - title: Components
+    - title: CSS variables
+    - title: Optimize
+
+- title: Layout
+  icon: grid-fill
+  icon_color: teal
+  pages:
+    - title: Breakpoints
+    - title: Containers
+    - title: Grid
+    - title: Columns
+    - title: Gutters
+    - title: Utilities
+    - title: Z-index
+    - title: CSS Grid
+
+- title: Content
+  icon: file-earmark-richtext
+  icon_color: gray
+  pages:
+    - title: Reboot
+    - title: Typography
+    - title: Images
+    - title: Tables
+    - title: Figures
+    - title: Prose
+
+- title: Forms
+  icon: ui-radios
+  icon_color: blue
+  pages:
+    - title: Overview
+    - title: Form control
+    - title: Checkbox
+    - title: Radio
+    - title: Switch
+    - title: Range
+    - title: Input group
+    - title: Floating labels
+    - title: Layout
+    - title: Validation
+
+- title: Components
+  icon: menu-button-wide-fill
+  icon_color: cyan
+  pages:
+    - title: Accordion
+    - title: Alert
+    - title: Badge
+    - title: Breadcrumb
+    - title: Buttons
+    - title: Button group
+    - title: Card
+    - title: Carousel
+    - title: Close button
+    - title: Collapse
+    - title: Dialog
+    - title: Dropdown
+    - title: List group
+    - title: Navbar
+    - title: Navs & tabs
+    - title: Offcanvas
+    - title: Pagination
+    - title: Placeholder
+    - title: Popover
+    - title: Progress
+    - title: Scrollspy
+    - title: Spinner
+    - title: Toasts
+    - title: Tooltip
+
+- title: Helpers
+  icon: magic
+  icon_color: orange
+  pages:
+    - title: Color & background
+    - title: Colored links
+    - title: Focus ring
+    - title: Icon link
+    - title: Position
+    - title: Stacks
+    - title: Stretched link
+    - title: Text truncation
+    - title: Vertical rule
+    - title: Visually hidden
+
+- title: Utilities
+  icon: braces-asterisk
+  icon_color: red
+  pages:
+    - title: API
+    - group: Color
+      pages:
+        - title: Colors
+        - title: Background
+    - group: Layout
+      pages:
+        - title: Aspect ratio
+        - title: Display
+        - title: Float
+        - title: Object fit
+        - title: Overflow
+        - title: Position
+        - title: Visibility
+        - title: Z-index
+    - group: Flex & Grid
+      pages:
+        - title: Align content
+        - title: Align items
+        - title: Align self
+        - title: Flex
+        - title: Gap
+        - title: Grid
+        - title: Justify content
+        - title: Justify items
+        - title: Place items
+    - group: Sizing
+      pages:
+        - title: Width
+        - title: Height
+    - group: Spacing
+      pages:
+        - title: Margin
+        - title: Padding
+    - group: Type
+      pages:
+        - title: Font family
+        - title: Font size
+        - title: Font style
+        - title: Font weight
+        - title: Line height
+        - title: Link
+        - title: Text alignment
+        - title: Text decoration
+        - title: Text transform
+        - title: Text wrapping
+        - title: Vertical align
+        - title: Word break
+    - group: Borders
+      pages:
+        - title: Border
+        - title: Border color
+        - title: Border radius
+    - group: Interactions
+      pages:
+        - title: Pointer events
+        - title: User select
+    - group: Effects
+      pages:
+        - title: Opacity
+        - title: Shadows
+
+- title: About
+  icon: globe2
+  icon_color: indigo
+  pages:
+    - title: Overview
+    - title: Team
+    - title: Brand
+    - title: License
+    - title: Translations
+
+- title: Migration

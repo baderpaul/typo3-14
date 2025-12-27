@@ -1,0 +1,67 @@
+---
+title: Border
+description: Use border utilities to quickly style the border and border-radius of an element. Great for images, buttons, or any other element.
+toc: true
+alias:
+  - /docs/5.3/utilities/border/
+mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/border
+utility:
+  - border
+  - border-top
+  - border-end
+  - border-bottom
+  - border-start
+  - border-width
+---
+
+## Border
+
+Use border utilities to add or remove an element's borders. Choose from all borders or one at a time.
+
+### Additive
+
+Add borders to custom elements:
+
+<Example class="bd-example-border-utils" code={`<span class="border"></span>
+<span class="border-top"></span>
+<span class="border-end"></span>
+<span class="border-bottom"></span>
+<span class="border-start"></span>`} />
+
+### Subtractive
+
+Or remove borders:
+
+<Example class="bd-example-border-utils" code={`<span class="border border-0"></span>
+<span class="border border-top-0"></span>
+<span class="border border-end-0"></span>
+<span class="border border-bottom-0"></span>
+<span class="border border-start-0"></span>`} />
+
+## Width
+
+<Example class="bd-example-border-utils" code={`<span class="border border-1"></span>
+<span class="border border-2"></span>
+<span class="border border-3"></span>
+<span class="border border-4"></span>
+<span class="border border-5"></span>`} />
+
+## CSS
+
+### Variables
+
+<ScssDocs name="root-border-var" file="scss/_root.scss" />
+
+### Sass variables
+
+<ScssDocs name="border-variables" file="scss/_variables.scss" />
+
+### Sass mixins
+
+<ScssDocs name="border-radius-mixins" file="scss/mixins/_border-radius.scss" />
+
+### Sass utilities API
+
+Border utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]([[docsref:/utilities/api#using-the-api]])
+
+<ScssDocs name="utils-borders" file="scss/_utilities.scss" />

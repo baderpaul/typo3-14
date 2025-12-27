@@ -1,0 +1,82 @@
+@use "../../../scss/variables" as *;
+@use "../../../scss/layout/breakpoints" as *;
+@use "../../../scss/mixins/border-radius" as *;
+@use "../../../scss/mixins/focus-ring" as *;
+
+@layer custom {
+  .bd-sidebar {
+    @include media-breakpoint-up(lg) {
+      position: sticky;
+      top: 5rem;
+      // Override collapse behaviors
+      // stylelint-disable-next-line declaration-no-important
+      display: block !important;
+      height: calc(100vh - 6rem);
+      // Prevent focus styles to be cut off:
+      padding-inline-start: .25rem;
+      margin-inline-start: -.25rem;
+      overflow-y: auto;
+    }
+
+    @include media-breakpoint-down(lg) {
+      .offcanvas-lg {
+        border-inline-end-color: var(--bs-border-color);
+        box-shadow: var(--bs-box-shadow-lg);
+      }
+    }
+  }
+
+  .bd-links-heading {
+    gap: .25rem;
+    color: var(--bs-emphasis-color);
+  }
+  .bd-links-heading .bi {
+    width: 16px;
+    height: 16px;
+  }
+
+  .bd-links-subgroup {
+    margin-inline-start: 1.75rem;
+    color: var(--bs-fg-3);
+  }
+
+  .bd-links-nav {
+    @include media-breakpoint-between(xs, lg) {
+      column-count: 2;
+      column-gap: 1.5rem;
+
+      .bd-links-group {
+        break-inside: avoid;
+      }
+
+      .bd-links-span-all {
+        column-span: all;
+      }
+    }
+  }
+
+  .bd-links-link {
+    display: block;
+    padding: .25rem .75rem;
+    margin-inline-start: 1rem;
+    margin-top: .125rem;
+    font-size: .875rem;
+    color: var(--bs-body-color);
+    text-decoration: none;
+    @include border-radius(var(--bs-border-radius));
+
+    &:hover {
+      background-color: var(--bs-bg-1);
+    }
+
+    &:focus-visible {
+      @include focus-ring();
+    }
+
+    &.active {
+      font-weight: 500;
+      color: var(--bs-emphasis-color);
+      background-color: var(--bs-bg-2);
+    }
+  }
+}

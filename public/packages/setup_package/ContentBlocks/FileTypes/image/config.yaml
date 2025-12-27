@@ -1,8 +1,8 @@
-name: typo3-14/file-type-image
+name: typo3-14/file-type-image-test
 typeName: image
 prefixFields: false
 fields:
-  - identifier: image_overlay_palette
+  - identifier: image_overlay_palette_2
     type: Palette
     label: 'LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file_reference.imageoverlayPalette'
     fields:

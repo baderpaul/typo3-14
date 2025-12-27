@@ -1,0 +1,74 @@
+---
+title: Height
+description: Use height utilities to control the height of elements with responsive height classes.
+toc: true
+mdn: https://developer.mozilla.org/en-US/docs/Web/CSS/height
+utility:
+  - height
+  - max-height
+  - min-height
+  - viewport-height
+  - min-viewport-height
+---
+
+Use height utilities to set the height of elements. Height utilities are generated from the utility API and include support for percentage values, intrinsic sizing keywords, and viewport units.
+
+## Relative height
+
+Set height relative to the parent element using percentage-based utilities. Includes support for `25%`, `50%`, `75%`, `100%`, and `auto` by default.
+
+<Example class="bd-example-flex" code={`<div style="height: 100px;">
+    <div class="h-25 d-inline-block" style="width: 120px;">Height 25%</div>
+    <div class="h-50 d-inline-block" style="width: 120px;">Height 50%</div>
+    <div class="h-75 d-inline-block" style="width: 120px;">Height 75%</div>
+    <div class="h-100 d-inline-block" style="width: 120px;">Height 100%</div>
+    <div class="h-auto d-inline-block" style="width: 120px;">Height auto</div>
+  </div>`} />
+
+## Intrinsic sizing
+
+Use intrinsic sizing keywords to set height based on content.
+
+<Example class="bd-example-flex" code={`<div style="height: 200px;">
+    <div class="h-min d-inline-block p-3" style="width: 120px;">Height min-content</div>
+    <div class="h-max d-inline-block p-3" style="width: 120px;">Height max-content</div>
+    <div class="h-fit d-inline-block p-3" style="width: 120px;">Height fit-content</div>
+  </div>`} />
+
+## Max height
+
+Set maximum height using `max-height` utilities.
+
+<Example class="bd-example-flex" code={`<div style="height: 100px;">
+    <div class="max-h-100" style="width: 100px; height: 200px;">Max-height 100%</div>
+  </div>`} />
+
+## Min height
+
+Set minimum height using `min-height` utilities.
+
+<Example class="bd-example-flex" code={`<div class="min-h-0 p-3" style="width: 200px;">
+    Min-height 0 (allows content to determine height)
+  </div>
+<div class="min-h-100 p-3" style="width: 200px;">Min-height 100%</div>`} />
+
+## Viewport height
+
+Set height relative to the viewport using viewport units.
+
+```html
+<div class="vh-100">Height 100vh</div>
+<div class="min-vh-100">Min-height 100vh</div>
+```
+
+<Callout>
+**Full viewport height sections!** Using `vh-100` makes an element take up the entire viewport height, which is useful for hero sections and full-screen layouts.
+</Callout>
+
+## CSS
+
+### Sass utilities API
+
+Height utilities are declared in our utilities API in `scss/_utilities.scss`. [Learn how to use the utilities API.]([[docsref:/utilities/api#using-the-api]])
+
+<ScssDocs name="utils-height" file="scss/_utilities.scss" />
