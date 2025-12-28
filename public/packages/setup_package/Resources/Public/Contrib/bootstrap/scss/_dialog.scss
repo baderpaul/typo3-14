@@ -175,7 +175,7 @@ $dialog-footer-gap:             .5rem !default;
   @each $breakpoint in map.keys($grid-breakpoints) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
     // stylelint-disable-next-line scss/at-function-named-arguments
-    $postfix: if(sass($infix != ""): #{$infix}-down; else: "");
+    $postfix: if(sass($infix != ""), #{$infix}-down, else "");
 
     @if $postfix != "" {
       @include media-breakpoint-down($breakpoint) {

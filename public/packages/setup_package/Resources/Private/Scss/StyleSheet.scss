@@ -1,0 +1,43 @@
+@forward "../../Public/Contrib/bootstrap/scss/banner";
+
+// scss-docs-start import-stack
+
+// Global CSS variables, layer definitions, and configuration
+
+@forward "../../Public/Contrib/bootstrap/scss/root";
+
+// Subdir imports
+@forward "../../Public/Contrib/bootstrap/scss/content";
+@forward "../../Public/Contrib/bootstrap/scss/layout";
+@forward "../../Public/Contrib/bootstrap/scss/forms";
+@forward "../../Public/Contrib/bootstrap/scss/buttons";
+
+// Components
+@forward "../../Public/Contrib/bootstrap/scss/accordion";
+
+@forward "../../Public/Contrib/bootstrap/scss/alert";
+@forward "../../Public/Contrib/bootstrap/scss/badge";
+@forward "../../Public/Contrib/bootstrap/scss/breadcrumb";
+@forward "../../Public/Contrib/bootstrap/scss/card";
+@forward "../../Public/Contrib/bootstrap/scss/carousel";
+@forward "../../Public/Contrib/bootstrap/scss/dialog";
+@forward "../../Public/Contrib/bootstrap/scss/dropdown";
+@forward "../../Public/Contrib/bootstrap/scss/list-group";
+@forward "../../Public/Contrib/bootstrap/scss/nav";
+@forward "../../Public/Contrib/bootstrap/scss/navbar";
+@forward "../../Public/Contrib/bootstrap/scss/offcanvas";
+@forward "../../Public/Contrib/bootstrap/scss/pagination";
+@forward "../../Public/Contrib/bootstrap/scss/placeholder";
+@forward "../../Public/Contrib/bootstrap/scss/popover";
+@forward "../../Public/Contrib/bootstrap/scss/progress";
+@forward "../../Public/Contrib/bootstrap/scss/spinner";
+@forward "../../Public/Contrib/bootstrap/scss/toasts";
+@forward "../../Public/Contrib/bootstrap/scss/tooltip";
+@forward "../../Public/Contrib/bootstrap/scss/transitions";
+
+// Helpers
+@forward "../../Public/Contrib/bootstrap/scss/helpers";
+
+// Utilities
+@forward "../../Public/Contrib/bootstrap/scss/utilities/api";
+// scss-docs-end import-stack

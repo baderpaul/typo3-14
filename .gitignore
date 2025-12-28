@@ -13,3 +13,6 @@ var/
 !/vendor/
 /vendor/*
 !/vendor/typo314/
+node_modules/
+package-lock.json
+package.json

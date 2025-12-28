@@ -8,7 +8,7 @@
   @include it("should return a color when contrast ratio equals minimum requirement (WCAG 2.1 compliance)") {
     // Test case: Background color that produces contrast ratio close to 4.5:1
     // This tests the WCAG 2.1 requirement that contrast should be "at least 4.5:1" (>= 4.5)
-    // rather than "strictly greater than 4.5:1" (> 4.5)
+    // rather than "strictly greater than 4.5:1" (> 4.5)å
 
     // #777777 produces 4.4776:1 contrast ratio with white text
     // Since this is below the 4.5:1 threshold, it should return the highest available contrast color
